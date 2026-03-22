@@ -1,0 +1,149 @@
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  margin: 0 0 24px;
+  color: #1a1a2e;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.search-input,
+.category-select {
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  background: #fff;
+  color: #222;
+  transition: border-color 0.2s;
+}
+
+.search-input {
+  flex: 1 1 240px;
+}
+
+.category-select {
+  flex: 0 1 200px;
+}
+
+.search-input:focus,
+.category-select:focus {
+  border-color: #5b6af0;
+}
+
+/* Status boxes */
+.status-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.status-box.loading {
+  background: #eef2ff;
+  color: #3730a3;
+}
+
+.status-box.error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.status-box.empty {
+  background: #f9fafb;
+  color: #6b7280;
+}
+
+/* Spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #a5b4fc;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Grid */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.benefit-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s;
+}
+
+.benefit-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  color: #111827;
+}
+
+.card-category {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #ede9fe;
+  color: #5b21b6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.card-description {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+
+.card-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-top: 4px;
+}
