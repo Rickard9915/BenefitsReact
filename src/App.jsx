@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import BenefitCard from './components/BenefitCard'
+import SearchBar from './components/SearchBar'
+import CategoryFilter from './components/CategoryFilter'
+import LoadingSpinner from './components/LoadingSpinner'
+import ErrorMessage from './components/ErrorMessage'
 
 function App() {
   const [benefits, setBenefits] = useState([])
@@ -39,39 +44,13 @@ function App() {
       </header>
 
       <div className="filters">
-        <input
-          type="text"
-          placeholder="Sök på titel..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="search-input"
-        />
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="category-select"
-        >
-          <option value="">Alla kategorier</option>
-          {categories.map((cat, i) => (
-            <option key={`${cat}-${i}`} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+        <SearchBar value={search} onChange={setSearch} />
+        <CategoryFilter categories={categories} value={selectedCategory} onChange={setSelectedCategory} />
       </div>
 
-      {loading && (
-        <div className="status-box loading">
-          <div className="spinner" />
-          <p>Laddar förmåner...</p>
-        </div>
-      )}
+      {loading && <LoadingSpinner />}
 
-      {error && (
-        <div className="status-box error">
-          <p>{error}</p>
-        </div>
-      )}
+      {error && <ErrorMessage message={error} />}
 
       {!loading && !error && filtered.length === 0 && (
         <div className="status-box empty">
@@ -81,18 +60,7 @@ function App() {
 
       <div className="benefits-grid">
         {filtered.map((benefit) => (
-          <div key={benefit.id} className="benefit-card">
-            <div className="card-header">
-              <h2 className="card-title">{benefit.title}</h2>
-              {benefit.category && (
-                <span className="card-category">{benefit.category?.name}</span>
-              )}
-            </div>
-            <p className="card-description">{benefit.description}</p>
-            <div className="card-value">
-              {benefit.value != null ? `${benefit.value} kr` : '–'}
-            </div>
-          </div>
+          <BenefitCard key={benefit.id} benefit={benefit} />
         ))}
       </div>
     </div>
